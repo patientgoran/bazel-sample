@@ -1,5 +1,10 @@
 ## Instructions
 
+> While browsing this repo, these are the only files pertinent to Bazel:
+> - `WORKSPACE`
+> - `.bazelrc`
+> - Multiple `BUILD` files in subdirectories
+
 1. Install **bazelisk**: `brew install bazelisk`
     -  `bazelisk` is a thin wrapper around bazel making sure you always use the latest version, or the one specified in config (if any) 
 2. Install bazel plugin in **IJ** from marketplace (easy to find)
