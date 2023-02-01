@@ -32,4 +32,33 @@ $ bazelisk build //libs/samplelib:samplelib
 ### Build/Test in IJ 
 
 - **Build**: just right click on a (sub-) directory in your repo and choose a meny item saying **Partially Sync ...**
-- **Test**: right click on a test class and choose `Debug Bazel test <MyClass>` 
+- **Test**: right click on a test class and choose `Debug Bazel test <MyClass>`
+
+### CI/CD
+
+Bazel implements targets for building (and pushing) Docker images, so a lot of CI/CD could be done from Bazel.
+
+Examples:
+```
+java_image {
+  name = "my-image",
+  base = "...",
+}
+
+container_push(
+    name = "image-push",
+    format = "Docker",
+    image = ":my-image",
+    registry = "index.docker.io",
+    repository = "<username>/cmd-api",
+)
+```
+
+and then
+
+`bazel run :image-push`
+
+IMO the previous command should trigger the image deployment in the test env.
+
+Tagging image for production should roll it out.
+
